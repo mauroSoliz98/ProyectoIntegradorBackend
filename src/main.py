@@ -4,8 +4,10 @@ from fastapi.responses import FileResponse, HTMLResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 from src.routers.auth_router import authRouter
+from src.routers.points_router import pointRouter
 
-app = FastAPI(docs_url=None, redoc_url=None)
+#app = FastAPI(docs_url=None, redoc_url=None)
+app = FastAPI()
 
 origins = ["http://localhost:5173"]
 
@@ -26,6 +28,7 @@ app.add_middleware(
 
 # Incluye los routers
 app.include_router(authRouter, prefix="/api/auth")
+app.include_router(pointRouter, prefix="/api/points")
 
 
 @app.get("/")
