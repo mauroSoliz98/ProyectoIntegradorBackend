@@ -6,8 +6,8 @@ from fastapi.templating import Jinja2Templates
 from src.routers.auth_router import authRouter
 from src.routers.points_router import pointRouter
 
-#app = FastAPI(docs_url=None, redoc_url=None)
-app = FastAPI()
+app = FastAPI(docs_url=None, redoc_url=None)
+#app = FastAPI()
 
 origins = ["http://localhost:5173"]
 
@@ -33,13 +33,13 @@ app.include_router(pointRouter, prefix="/api/points")
 
 @app.get("/")
 async def serve_react():
-    return {"message": "Hello World"}
-    #return HTMLResponse(open("dist/index.html").read())
-'''
+    #return {"message": "Hello World"}
+    return HTMLResponse(open("dist/index.html").read())
+
 @app.exception_handler(404)
 async def exception_404_handler(request, exc):
     return FileResponse("dist/index.html")
-
+'''
 NOTA: PONER EL SIGUEINTE COMANDO EN RENDER
 prisma && uvicorn main:app --host 0.0.0.0 --port $PORT
 '''
