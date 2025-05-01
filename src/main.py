@@ -20,10 +20,10 @@ app.add_middleware(
 )
 
 # Configura Jinja2Templates para apuntar al directorio dist
-#templates = Jinja2Templates(directory="../dist")
+templates = Jinja2Templates(directory="../dist")
 
 # Monta el directorio dist para servir archivos estáticos
-#app.mount('/assets', StaticFiles(directory="dist/assets"), name='assets')
+app.mount('/assets', StaticFiles(directory="dist/assets"), name='assets')
 
 
 # Incluye los routers
