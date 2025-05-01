@@ -34,5 +34,7 @@ class ResponsePoint(BaseModel):
     created_at: datetime
     created_by_profile_id: UUID
 
+    '''
     class Config:
         orm_mode = True
+    '''
