@@ -14,15 +14,13 @@ def valid_user():
         "country": "Bolivia",
         "username": "testUser2025"
     }
+
 def test_register_user_success(valid_user):
     mock_user = MagicMock()
     mock_user.id = "mocked_user_id"
-    mock_insert = MagicMock()
-    mock_insert.data = [{"id": "mocked_user_id"}]
 
     with patch("src.supabase.register.supabase") as mock_supabase:
         mock_supabase.auth.sign_up.return_value.user = mock_user
-        mock_supabase.table.return_value.insert.return_value.execute.return_value = mock_insert
 
         response = client.post("api/auth/register", json=valid_user)
         assert response.status_code == 200
@@ -37,10 +35,8 @@ def test_register_fail_auth(valid_user):
         assert "No se pudo crear el usuario" in response.text
 
 def test_register_invalid_user():
-    # Usuario con email malformado y falta de campos requeridos
     payload = {
-        "email": "invalid-email",  # formato incorrecto
-        # falta password, username, name, country
+        "email": "invalid-email",
     }
     response = client.post("/api/auth/register", json=payload)
     assert response.status_code == 422
