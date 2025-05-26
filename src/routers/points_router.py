@@ -2,7 +2,7 @@ from fastapi import APIRouter, HTTPException, status
 from typing import List
 from uuid import UUID
 from src.models.point_model import RequestPoint, ResponsePoint
-from src.supabase.point import get_points, create_point, delete_point, update_point
+from src.controllers.point_controller import get_points, create_point, delete_point, update_point
 
 pointRouter = APIRouter()
 

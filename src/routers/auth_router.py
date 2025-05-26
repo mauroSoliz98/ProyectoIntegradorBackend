@@ -1,8 +1,8 @@
 from fastapi import APIRouter, HTTPException
 from src.models.user_model import UserRegister
 from src.models.user_model import UserLogin
-from src.supabase.register import register_user
-from src.supabase.login import login_user
+from src.controllers.register_controller import register_user
+from src.controllers.login_controller import login_user
 
 authRouter = APIRouter(tags=["Auth"])
 
