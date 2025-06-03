@@ -1,7 +1,7 @@
 from typing import List
 from uuid import UUID
 from datetime import datetime, timezone
-from .client import supabase
+from ..config.client import supabase
 from src.models.point_model import RequestPoint, ResponsePoint
 
 TABLE = "points_of_interest"

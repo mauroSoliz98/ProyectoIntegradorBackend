@@ -1,4 +1,4 @@
-from .client import supabase
+from ..config.client import supabase
 from src.models.user_model import UserRegister
 from fastapi import HTTPException
 

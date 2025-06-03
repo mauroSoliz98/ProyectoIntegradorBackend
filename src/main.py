@@ -5,6 +5,7 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 from src.routers.auth_router import authRouter
 from src.routers.points_router import pointRouter
+from src.routers.chat_router import chatRouter
 
 app = FastAPI(docs_url=None, redoc_url=None)
 #app = FastAPI()
@@ -29,6 +30,7 @@ app.mount('/assets', StaticFiles(directory="dist/assets"), name='assets')
 # Incluye los routers
 app.include_router(authRouter, prefix="/api/auth")
 app.include_router(pointRouter, prefix="/api/points")
+app.include_router(chatRouter, prefix="/api/chat")
 
 
 @app.get("/")
