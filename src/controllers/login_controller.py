@@ -29,8 +29,7 @@ def login_user(user_data: UserLogin):
 
         return {
             "user_id": auth_response.user.id,
-            "email": auth_response.user.email,
-            "profile": profile
+            "email": auth_response.user.email
         }
 
     except Exception as e:
