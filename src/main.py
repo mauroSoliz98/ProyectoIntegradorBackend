@@ -7,10 +7,13 @@ from src.routers.auth_router import authRouter
 from src.routers.points_router import pointRouter
 from src.routers.chat_router import chatRouter
 
-app = FastAPI(docs_url=None, redoc_url=None)
-#app = FastAPI()
+#app = FastAPI(docs_url=None, redoc_url=None)
+app = FastAPI()
 
-origins = ["http://localhost:5173"]
+origins = [
+           "http://localhost:5173",
+           "https://proyectointegradorbackend-gbuj.onrender.com"
+          ]
 
 app.add_middleware(
     CORSMiddleware,
@@ -18,6 +21,7 @@ app.add_middleware(
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
+    allow_origin_regex=f"https?://.*"
 )
 
 # Configura Jinja2Templates para apuntar al directorio dist
