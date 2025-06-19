@@ -11,8 +11,7 @@ from src.routers.chat_router import chatRouter
 app = FastAPI()
 
 origins = [
-           "http://localhost:5173",
-           "https://proyectointegradorbackend-gbuj.onrender.com"
+           "http://localhost:5173"
           ]
 
 app.add_middleware(
@@ -24,10 +23,10 @@ app.add_middleware(
 )
 
 # Configura Jinja2Templates para apuntar al directorio dist
-templates = Jinja2Templates(directory="../dist")
+#templates = Jinja2Templates(directory="../dist")
 
 # Monta el directorio dist para servir archivos estáticos
-app.mount('/assets', StaticFiles(directory="dist/assets"), name='assets')
+#app.mount('/assets', StaticFiles(directory="dist/assets"), name='assets')
 
 
 # Incluye los routers
@@ -38,13 +37,13 @@ app.include_router(chatRouter, prefix="/api/chat")
 
 @app.get("/")
 async def serve_react():
-    #return {"message": "Hello World"}
-    return HTMLResponse(open("dist/index.html").read())
-
+    return {"message": "Hello World"}
+    #return HTMLResponse(open("dist/index.html").read())
+'''
 @app.exception_handler(404)
 async def exception_404_handler(request, exc):
     return FileResponse("dist/index.html")
-'''
+
 NOTA: PONER EL SIGUEINTE COMANDO EN RENDER
 prisma && uvicorn main:app --host 0.0.0.0 --port $PORT
 '''
