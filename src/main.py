@@ -11,7 +11,9 @@ from src.routers.chat_router import chatRouter
 app = FastAPI()
 
 origins = [
-           "http://localhost:5173"
+           "http://localhost:5173",
+           "https://app.netlify.com/projects/integrador-front-mau/configuration/general",
+           "https://meaningful-laurella-maurosoliz98-6ca31c8e.koyeb.app/"
           ]
 
 app.add_middleware(
