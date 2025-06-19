@@ -7,7 +7,6 @@ from src.routers.auth_router import authRouter
 from src.routers.points_router import pointRouter
 from src.routers.chat_router import chatRouter
 
-#app = FastAPI(docs_url=None, redoc_url=None)
 app = FastAPI()
 
 origins = [
@@ -23,28 +22,16 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Configura Jinja2Templates para apuntar al directorio dist
-#templates = Jinja2Templates(directory="../dist")
-
-# Monta el directorio dist para servir archivos estáticos
-#app.mount('/assets', StaticFiles(directory="dist/assets"), name='assets')
-
-
 # Incluye los routers
 app.include_router(authRouter, prefix="/api/auth")
 app.include_router(pointRouter, prefix="/api/points")
-app.include_router(chatRouter, prefix="/api/chat")
-
+app.include_router(chatRouter, prefix="/api/chat")  # Esto ya incluye el WebSocket en /api/chat/ws
 
 @app.get("/")
 async def serve_react():
     return {"message": "Hello World"}
-    #return HTMLResponse(open("dist/index.html").read())
-'''
-@app.exception_handler(404)
-async def exception_404_handler(request, exc):
-    return FileResponse("dist/index.html")
 
-NOTA: PONER EL SIGUEINTE COMANDO EN RENDER
-prisma && uvicorn main:app --host 0.0.0.0 --port $PORT
-'''
+# Endpoint de prueba para verificar que el servidor está funcionando
+@app.get("/health")
+async def health_check():
+    return {"status": "healthy", "message": "Server is running"}
