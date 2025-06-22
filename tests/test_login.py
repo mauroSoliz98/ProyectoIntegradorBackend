@@ -25,7 +25,7 @@ def test_login_success(valid_credentials):
         "username": valid_credentials["username"]
     }]
 
-    with patch("src.supabase.login.supabase") as mock_supabase:
+    with patch("src.controllers.login_controller.supabase") as mock_supabase:
         # Mock profile lookup
         mock_query = MagicMock()
         mock_query.select.return_value.eq.return_value.execute.return_value.data = profile_data
@@ -40,7 +40,7 @@ def test_login_success(valid_credentials):
         assert response.json()["email"] == mock_user.email
 
 def test_login_invalid_credentials(valid_credentials):
-    with patch("src.supabase.login.supabase") as mock_supabase:
+    with patch("src.controllers.login_controller.supabase") as mock_supabase:
         # Simular perfil encontrado
         mock_query = MagicMock()
         mock_query.select.return_value.eq.return_value.execute.return_value.data = [{

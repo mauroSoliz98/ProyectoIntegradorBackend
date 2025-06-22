@@ -29,12 +29,12 @@ def insert_point_success(insert_point):
         "created_by_profile_id": insert_point["created_by_profile_id"]
     }
 
-    with patch("src.supabase.point.create_point", return_value=mock_response):
+    with patch("src.controllers.point_controller.create_point", return_value=mock_response):
         response = client.post("/api/points/", json=insert_point)
         assert response.status_code == 201
         assert response.json() == mock_response
 
 def test_insert_point_failure(insert_point):
-    with patch("src.supabase.point.create_point", side_effect=Exception("Database error")):
+    with patch("src.controllers.point_controller.create_point", side_effect=Exception("Database error")):
         response = client.post("/api/points/", json=insert_point)
         assert response.status_code == 422

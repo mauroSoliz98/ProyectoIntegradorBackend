@@ -19,7 +19,7 @@ def test_register_user_success(valid_user):
     mock_user = MagicMock()
     mock_user.id = "mocked_user_id"
 
-    with patch("src.supabase.register.supabase") as mock_supabase:
+    with patch("src.controllers.register_controller.supabase") as mock_supabase:
         mock_supabase.auth.sign_up.return_value.user = mock_user
 
         response = client.post("api/auth/register", json=valid_user)
@@ -27,7 +27,7 @@ def test_register_user_success(valid_user):
         assert "user_id" in response.json()
 
 def test_register_fail_auth(valid_user):
-    with patch("src.supabase.register.supabase") as mock_supabase:
+    with patch("src.controllers.register_controller.supabase") as mock_supabase:
         mock_supabase.auth.sign_up.return_value.user = None
 
         response = client.post("api/auth/register", json=valid_user)
