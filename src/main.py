@@ -11,7 +11,8 @@ app = FastAPI()
 
 origins = [
            "http://localhost:5173",
-           "https://integrador-front-mau.netlify.app"
+           "https://integrador-front-mau.netlify.app",
+           "http://localhost:4173"
           ]
 
 app.add_middleware(
